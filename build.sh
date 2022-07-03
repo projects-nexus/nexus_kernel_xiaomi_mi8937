@@ -11,6 +11,12 @@ if [[ ${1-} == "-c" || ${1-} == "--clean" ]]; then
     echo "[!] Cleaned output directory."
 fi
 
+if [[ $1 == "-r" || $1 == "--regen" ]]; then
+    cp out/.config arch/arm64/configs/${DEFCONFIG}
+    echo -e "[!] Defconfig regenerated successfully."
+    exit 0
+fi
+
 # Clone toolchain
 if [ -d "$TOOLCHAIN_DIR" ]; then
     echo "[!] Toolchain directory exists. Skipping..."
