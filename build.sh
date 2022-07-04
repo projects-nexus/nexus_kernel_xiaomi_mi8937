@@ -63,8 +63,8 @@ if [ -f out/arch/arm64/boot/Image.gz-dtb ]; then
     cd "${AK3_DIR}" || exit
     zip -rq9 "${KDIR}/../${ZIP}" * -x "README.md"  || { echo -e "[✘] Failed to create ZIP file."; exit 0; }
     cd "$KDIR" || exit
-    echo -n ""[i] Link:" $(curl --silent -T "${KDIR}/../$ZIP" temp.sh)"
+    echo -n [i] "Link: $(curl -s -T "${KDIR}/../$ZIP" oshi.at | head -n -2 | tail -n -1 | cut -d' ' -f1)"
         printf "\n"
-    echo ""[i] MD5:" $(md5sum ../"${ZIP}" | cut -d' ' -f1)"
+    echo -n "[i] MD5: $(md5sum ../"${ZIP}" | cut -d' ' -f1)"
     echo "[✓] Kernel successfully zipped."
 fi
